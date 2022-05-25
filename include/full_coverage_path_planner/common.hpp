@@ -3,13 +3,12 @@
 //
 // Created by nobleo on 6-9-18.
 //
+#pragma once
+
 #include <climits>
 #include <fstream>
 #include <list>
 #include <vector>
-
-#ifndef FULL_COVERAGE_PATH_PLANNER_COMMON_H
-#define FULL_COVERAGE_PATH_PLANNER_COMMON_H
 
 typedef struct
 {
