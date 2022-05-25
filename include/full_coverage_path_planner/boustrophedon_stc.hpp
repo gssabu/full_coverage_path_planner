@@ -28,18 +28,18 @@ using namespace std::chrono_literals;
 using std::string;
 namespace full_coverage_path_planner
 {
-  class SpiralSTC : public nav2_core::GlobalPlanner , private full_coverage_path_planner::FullCoveragePathPlanner
+  class BoustrophedonSTC : public nav2_core::GlobalPlanner , private full_coverage_path_planner::FullCoveragePathPlanner
   {
   public:
     /**
    * @brief constructor
    */
-    SpiralSTC();
+    BoustrophedonSTC();
 
     /**
    * @brief destructor
    */
-    ~SpiralSTC();
+    ~BoustrophedonSTC();
 
     /**
      * @brief Configuring plugin
