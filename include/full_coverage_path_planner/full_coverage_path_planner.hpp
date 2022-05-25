@@ -78,20 +78,36 @@ namespace full_coverage_path_planner
                              std::vector<geometry_msgs::msg::PoseStamped> &plan);
 
     /**
-     * @brief Convert ROS Occupancy grid to internal grid representation, given the size of a single tile
-     * @param cpp_grid_ ROS occupancy grid representation. Cells higher that 65 are considered occupied
-     * @param grid internal map representation
-     * @param tileSize size (in meters) of a cell. This can be the robot's size
-     * @param realStart Start position of the robot (in meters)
-     * @param scaledStart Start position of the robot on the grid
-     * @return success
-     */
-    bool parseGrid(nav2_costmap_2d::Costmap2D const * cpp_costmap,
-                   std::vector<std::vector<bool>> &grid,
-                   float robotRadius,
-                   float toolRadius,
-                   geometry_msgs::msg::PoseStamped const &realStart,
-                   Point_t &scaledStart);
+   * Convert ROS Occupancy grid to internal grid representation, given the size of a single tile
+   * @param costmap_grid_ Costmap representation. Cells higher that 65 are considered occupied
+   * @param grid internal map representation
+   * @param tileSize size (in meters) of a cell. This can be the robot's size
+   * @param realStart Start position of the robot (in meters)
+   * @param scaledStart Start position of the robot on the grid
+   * @return success
+   */
+  bool parseCostmap(nav2_costmap_2d::Costmap2D* costmap_grid_,
+                    std::vector<std::vector<bool> >& grid,
+                    float robotRadius,
+                    float toolRadius,
+                    geometry_msgs::PoseStamped const& realStart,
+                    Point_t& scaledStart);
+
+  /**
+   * Convert ROS Occupancy grid to internal grid representation, given the size of a single tile
+   * @param cpp_grid_ ROS occupancy grid representation. Cells higher that 65 are considered occupied
+   * @param grid internal map representation
+   * @param tileSize size (in meters) of a cell. This can be the robot's size
+   * @param realStart Start position of the robot (in meters)
+   * @param scaledStart Start position of the robot on the grid
+   * @return success
+   */
+  bool parseGrid(nav_msgs::OccupancyGrid const& cpp_grid_,
+                 std::vector<std::vector<bool> >& grid,
+                 float robotRadius,
+                 float toolRadius,
+                 geometry_msgs::PoseStamped const& realStart,
+                 Point_t& scaledStart);
 
     /**
      * @brief Create Quaternion from Yaw
@@ -117,14 +133,14 @@ namespace full_coverage_path_planner
     std::string name_, global_frame_;
     nav2_costmap_2d::Costmap2D * costmap_;
 
-    struct spiral_cpp_metrics_type
+    struct boustrophedon_cpp_metrics_type
     {
       int visited_counter;
       int multiple_pass_counter;
       int accessible_counter;
       double total_area_covered;
     };
-    spiral_cpp_metrics_type spiral_cpp_metrics_;
+    boustrophedon_cpp_metrics_type boustrophedon_cpp_metrics_;
   };
 
   /**
