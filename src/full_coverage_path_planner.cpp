@@ -194,7 +194,7 @@ namespace full_coverage_path_planner
     size_t ix;
     size_t iy;
     size_t nodeRow;
-    size_t nodeColl;
+    size_t nodeCol;
     size_t nodeSize = dmax(floor(toolRadius / costmap_grid_->getResolution()), 1);       // Size of node in pixels/units
     //size_t robotNodeSize = dmax(floor(robotRadius / cpp_costmap->getResolution()), 1); // RobotRadius in pixels/units
     size_t nRows = costmap_grid_->getSizeInCellsY();
@@ -208,8 +208,8 @@ namespace full_coverage_path_planner
     }
 
     // Save map origin and scaling
-    cpp_costmap->mapToWorld(0, 0, grid_origin_.x, grid_origin_.y);
-    tile_size_ = nodeSize * cpp_costmap->getResolution(); // Size of a tile in meters
+    //cpp_costmap->mapToWorld(0, 0, grid_origin_.x, grid_origin_.y);
+    tile_size_ = nodeSize * costmap_grid_->getResolution(); // Size of a tile in meters
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"costmap resolution: %g", costmap_grid_->getResolution());
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"tile size: %g", tile_size_);
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"grid origin: (%g, %g)", grid_origin_.x, grid_origin_.y);
