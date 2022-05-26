@@ -106,7 +106,7 @@ namespace full_coverage_path_planner
     int robot_dir = dirWithMostSpace(x2, y2, nCols, nRows, grid, visited, point);
   /*  GLOBAL VAR++*/  
   /*/   if global var ==1 /*/
-    int robot_dir = 
+   // int robot_dir = 
         
     // set dx and dy based on robot_dir
     switch(robot_dir) {
