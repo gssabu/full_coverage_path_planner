@@ -349,7 +349,7 @@ namespace full_coverage_path_planner
   }                    
 
   bool BoustrophedonSTC::makePlan(const geometry_msgs::msg::PoseStamped &start, const geometry_msgs::msg::PoseStamped &goal,
-                           std::vector<geometry_msgs::msg::PoseStamped> &plan);
+                           std::vector<geometry_msgs::msg::PoseStamped> &plan)
   {
     if (!initialized_)
     {
