@@ -131,7 +131,7 @@ namespace full_coverage_path_planner
     bool initialized_;
     geometry_msgs::msg::PoseStamped previous_goal_;
     std::string name_, global_frame_;
-   // nav2_costmap_2d::Costmap2D * costmap_;
+    nav2_costmap_2d::Costmap2D * costmap_;
     //nav2_costmap_2d::Costmap2DROS* costmap_ros_;
 
     struct boustrophedon_cpp_metrics_type
