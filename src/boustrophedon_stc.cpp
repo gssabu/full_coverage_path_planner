@@ -344,12 +344,12 @@ namespace full_coverage_path_planner
       gridNode_t BoustrophedonStart = pathNodes.back();
       printGrid(grid, visited, pathNodes, pathNodes.front(), pathNodes.back());
 #endif
-
+    }
     return fullPath;
   }                    
 
   bool BoustrophedonSTC::makePlan(const geometry_msgs::msg::PoseStamped &start, const geometry_msgs::msg::PoseStamped &goal,
-                           std::vector<geometry_msgs::msg::PoseStamped> &plan)
+                           std::vector<geometry_msgs::msg::PoseStamped> &plan);
   {
     if (!initialized_)
     {
