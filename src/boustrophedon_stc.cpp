@@ -92,6 +92,10 @@ namespace full_coverage_path_planner
   }
   std::list<gridNode_t> BoustrophedonSTC::boustrophedon(std::vector<std::vector<bool> > const& grid, std::list<gridNode_t>& init,
                                           std::vector<std::vector<bool> >& visited)
+  
+    ///
+    std::list<gridNode_t> BoustrophedonSTC::boustrophedon(std::vector<std::vector<bool> > const& grid, std::list<gridNode_t>& init,
+                                          std::vector<std::vector<bool> >& visited, /*/GLOBAL VAR (VERT/HORIZONTAL)/*/)
   {
     int dx, dy, x2, y2, i, nRows = grid.size(), nCols = grid[0].size();
     // Mountain pattern filling of the open space
