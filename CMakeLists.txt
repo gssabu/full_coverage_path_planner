@@ -38,7 +38,7 @@ set(library_name ${PROJECT_NAME})
 add_library(${PROJECT_NAME} SHARED
   src/common.cpp
   src/${PROJECT_NAME}.cpp
-  src/spiral_stc.cpp
+  src/boustrophedon_stc.cpp
 )
 
 ################################################################################
@@ -80,7 +80,7 @@ ament_export_include_directories(include)
 ament_export_libraries(${PROJECT_NAME})
 ament_export_dependencies(${dependencies})
 
-pluginlib_export_plugin_description_file(nav2_core fcpp_spiral_plugin.xml)
+pluginlib_export_plugin_description_file(nav2_core fcpp_boustrophedon_plugin.xml)
 
 ################################################################################
 # Install
@@ -97,7 +97,7 @@ install(DIRECTORY include/
   DESTINATION include/
 )
 
-install(FILES fcpp_spiral_plugin.xml
+install(FILES fcpp_boustrophedon_plugin.xml
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -113,12 +113,12 @@ if (BUILD_TESTING)
 
 #  find_package(ament_cmake_gtest REQUIRED)
 #  ament_add_gtest(test_common test/src/test_common.cpp test/src/util.cpp src/common.cpp)
-#  ament_add_gtest(test_spiral_stc test/src/test_spiral_stc.cpp test/src/util.cpp src/spiral_stc.cpp src/common.cpp src/${PROJECT_NAME}.cpp)
-#  ament_target_dependencies(test_spiral_stc ${${PROJECT_NAME}_EXPORTED_TARGETS})
+#  ament_add_gtest(test_boustrophedon_stc test/src/test_boustrophedon_stc.cpp test/src/util.cpp src/boustrophedon_stc.cpp src/common.cpp src/${PROJECT_NAME}.cpp)
+#  ament_target_dependencies(test_boustrophedon_stc ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
 #  find_package(OpenCV)
-#  ament_target_dependencies(test_spiral_stc ${OpenCV_INCLUDE_DIRS})
-#  target_link_libraries(test_spiral_stc ${OpenCV_LIBRARIES})
+#  ament_target_dependencies(test_boustrophedon_stc ${OpenCV_INCLUDE_DIRS})
+#  target_link_libraries(test_boustrophedon_stc ${OpenCV_LIBRARIES})
 
 #  ament_add_test(test/${PROJECT_NAME}/test_${PROJECT_NAME}.test)
 
