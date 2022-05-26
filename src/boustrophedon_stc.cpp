@@ -38,7 +38,7 @@ namespace full_coverage_path_planner
 
       // Currently this plugin does not use the costmap, instead request a map from a server
       // This will change in the future
-      //costmap_ros_ = costmap_ros;
+      costmap_ros_ = costmap_ros;
       costmap_ = costmap_ros->getCostmap();
       global_frame_ = costmap_ros->getGlobalFrameID();
 
@@ -364,7 +364,7 @@ namespace full_coverage_path_planner
 
     //clear the plan, just in case
     plan.clear();
-    //costmap_ = costmap_ros->getCostmap();
+    costmap_ = costmap_ros->getCostmap();
     clock_t begin = clock();
     Point_t startPoint;
 
