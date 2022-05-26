@@ -184,6 +184,75 @@ namespace full_coverage_path_planner
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"), "Plan ready containing %lu goals!", plan.size());
   }
 
+  bool FullCoveragePathPlanner::parseCostmap(nav2_costmap_2d::Costmap2D* costmap_grid_,
+                                          std::vector<std::vector<bool>> &grid,
+                                          float robotRadius,
+                                          float toolRadius,
+                                          geometry_msgs::msg::PoseStamped const &realStart,
+                                          Point_t &scaledStart)
+  {
+    size_t ix;
+    size_t iy;
+    size_t nodeRow;
+    size_t nodeColl;
+    size_t nodeSize = dmax(floor(toolRadius / costmap_grid_->getResolution()), 1);       // Size of node in pixels/units
+    //size_t robotNodeSize = dmax(floor(robotRadius / cpp_costmap->getResolution()), 1); // RobotRadius in pixels/units
+    size_t nRows = costmap_grid_->getSizeInCellsY();
+    size_t nCols = costmap_grid_->getSizeInCellsX();
+    unsigned char * costmap_grid_data = costmap_grid_->getCharMap();
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"), "nRows: %lu nCols: %lu nodeSize: %lu", nRows, nCols, nodeSize);
+
+    if (nRows == 0 || nCols == 0)
+    {
+      return false;
+    }
+
+    // Save map origin and scaling
+    cpp_costmap->mapToWorld(0, 0, grid_origin_.x, grid_origin_.y);
+    tile_size_ = nodeSize * cpp_costmap->getResolution(); // Size of a tile in meters
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"costmap resolution: %g", costmap_grid_->getResolution();
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"tile size: %g", tile_size_;
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"grid origin: (%g, %g)", grid_origin_.x, grid_origin_.y;
+    // Scale starting point
+        
+    scaledStart.x = static_cast<unsigned int>(clamp((realStart.pose.position.x - grid_origin_.x) / tile_size_, 0.0,
+                                                    floor(cpp_costmap->getSizeInCellsX() / tile_size_)));
+    scaledStart.y = static_cast<unsigned int>(clamp((realStart.pose.position.y - grid_origin_.y) / tile_size_, 0.0,
+                                                    floor(cpp_costmap->getSizeInCellsY() / tile_size_)));
+    
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"), "real start: (%g, %g)", realStart.pose.position.x, realStart.pose.position.y;
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"), "scaled start: (%u, %u)", scaledStart.x, scaledStart.y;
+            
+    // Scale grid
+    for (iy = 0; iy < nRows; iy = iy + nodeSize)
+  {
+    std::vector<bool> gridRow;
+    for (ix = 0; ix < nCols; ix = ix + nodeSize)
+    {
+      //?????????? where do we specify that above 65 is occupied?? 
+      bool nodeOccupied = false;
+      for (nodeRow = 0; (nodeRow < nodeSize) && ((iy + nodeRow) < nRows) && (nodeOccupied == false); ++nodeRow)
+      {
+        //???????????? what does the conditions mean??????   (nodeRow < nodeSize) && ((iy + nodeRow) < nRows)
+        for (nodeCol = 0; (nodeCol < nodeSize) && ((ix + nodeCol) < nCols); ++nodeCol)
+        {
+          double mx = ix + nodeCol;
+          double my = iy + nodeRow;
+          if (costmap_grid_->getCost(mx, my) > costmap_2d::INSCRIBED_INFLATED_OBSTACLE)
+          {
+            //?????????? how does this if statement become true? 
+            nodeOccupied = true;
+            // ROS_INFO("(%f, %f) marked occupied", mx, my);
+            break;
+          }
+        }
+      }
+      gridRow.push_back(nodeOccupied); // what does this push_back mean??
+    }
+    grid.push_back(gridRow);
+  }
+  return true;
+  }
   bool FullCoveragePathPlanner::parseGrid(nav2_costmap_2d::Costmap2D const * cpp_costmap,
                                           std::vector<std::vector<bool>> &grid,
                                           float robotRadius,
