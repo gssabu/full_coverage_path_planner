@@ -363,8 +363,8 @@ namespace full_coverage_path_planner
     }
 
     //clear the plan, just in case
-    plan.clear();
-    costmap_ = costmap_ros->getCostmap();
+   // plan.clear();
+   // costmap_ = costmap_ros->getCostmap();
     clock_t begin = clock();
     Point_t startPoint;
 
