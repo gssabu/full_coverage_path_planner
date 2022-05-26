@@ -239,7 +239,7 @@ namespace full_coverage_path_planner
         {
           double mx = ix + nodeCol;
           double my = iy + nodeRow;
-          if (costmap_grid_->getCost(mx, my) > costmap_2d::INSCRIBED_INFLATED_OBSTACLE)
+          if (costmap_grid_->getCost(mx, my) > nav2_costmap_2d::INSCRIBED_INFLATED_OBSTACLE)
           {
             //?????????? how does this if statement become true? 
             nodeOccupied = true;
