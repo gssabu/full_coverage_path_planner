@@ -10,6 +10,9 @@
 #include "full_coverage_path_planner/boustrophedon_stc.hpp"
 
 using nav2_util::declare_parameter_if_not_declared;
+
+int pattern_dir_ = point;
+
 namespace full_coverage_path_planner
 {
   BoustrophedonSTC::BoustrophedonSTC()
