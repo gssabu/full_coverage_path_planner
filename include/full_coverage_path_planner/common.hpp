@@ -166,5 +166,3 @@ int dirWithMostSpace(int x2, int y2, int nCols, int nRows,
                      std::vector<std::vector<bool> > const& grid,
                      std::vector<std::vector<bool> > const& visited,
                      int ignoreDir);
-
-#endif  // FULL_COVERAGE_PATH_PLANNER_COMMON_H
