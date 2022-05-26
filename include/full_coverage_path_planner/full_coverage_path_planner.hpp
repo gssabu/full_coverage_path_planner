@@ -127,7 +127,7 @@ namespace full_coverage_path_planner
     float tool_radius_;
     float plan_resolution_;
     float tile_size_;
-    dPoint_t grid_origin_;
+    fPoint_t grid_origin_;
     bool initialized_;
     geometry_msgs::msg::PoseStamped previous_goal_;
     std::string name_, global_frame_;
