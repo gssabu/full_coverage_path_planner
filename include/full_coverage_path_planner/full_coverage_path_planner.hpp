@@ -56,7 +56,7 @@ namespace full_coverage_path_planner
      * @brief  Default constructor for the NavFnROS object
      */
     FullCoveragePathPlanner();
-    FullCoveragePathPlanner(std::string name, costmap_2d::Costmap2DROS* costmap_ros);
+    //FullCoveragePathPlanner(std::string name, costmap_2d::Costmap2DROS* costmap_ros);
 
     /**
      * @brief  Publish a path for visualization purposes
