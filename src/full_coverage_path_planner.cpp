@@ -216,9 +216,10 @@ namespace full_coverage_path_planner
     // Scale starting point
         
     scaledStart.x = static_cast<unsigned int>(clamp((realStart.pose.position.x - grid_origin_.x) / tile_size_, 0.0,
-                                                    floor(cpp_costmap->getSizeInCellsX() / tile_size_)));
+                               floor(nCols / tile_size_)));
+  
     scaledStart.y = static_cast<unsigned int>(clamp((realStart.pose.position.y - grid_origin_.y) / tile_size_, 0.0,
-                                                    floor(cpp_costmap->getSizeInCellsY() / tile_size_)));
+                               floor(nRows / tile_size_)));
     
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"), "real start: (%g, %g)", realStart.pose.position.x, realStart.pose.position.y);
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"), "scaled start: (%u, %u)", scaledStart.x, scaledStart.y);
