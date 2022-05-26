@@ -103,7 +103,7 @@ namespace full_coverage_path_planner
      * @param visited all the nodes visited by the spiral
      * @return list of nodes that form the spiral
      */
-    static std::list<gridNode_t> spiral(std::vector<std::vector<bool>> const &grid, std::list<gridNode_t> &init,
+    static std::list<gridNode_t> boustrophedon(std::vector<std::vector<bool>> const &grid, std::list<gridNode_t> &init,
                                         std::vector<std::vector<bool>> &visited);
 
     /**
@@ -114,7 +114,7 @@ namespace full_coverage_path_planner
      * @param init
      * @return
      */
-    static std::list<Point_t> spiral_stc(std::vector<std::vector<bool>> const &grid,
+    static std::list<Point_t> boustrophedon_stc(std::vector<std::vector<bool>> const &grid,
                                          Point_t &init,
                                          int &multiple_pass_counter,
                                          int &visited_counter);
