@@ -378,7 +378,7 @@ int dirWithMostSpace(int x_init, int y_init, int nCols, int nRows,
 
   //????????? use the biggest value***-> 
   // set initial direction towards direction with most travel possible
-
+  int robot_dir = 0
   int indexValue = 0;
   for (int i = 1; i <= 4; i++) {
       // std::cout << "free space in " << i << ": " << free_space_in_dir[i] << std::endl;
