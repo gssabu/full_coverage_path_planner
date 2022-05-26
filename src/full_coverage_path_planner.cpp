@@ -208,7 +208,7 @@ namespace full_coverage_path_planner
     }
 
     // Save map origin and scaling
-    //cpp_costmap->mapToWorld(0, 0, grid_origin_.x, grid_origin_.y);
+    cpp_costmap->mapToWorld(0, 0, grid_origin_.x, grid_origin_.y);
     tile_size_ = nodeSize * costmap_grid_->getResolution(); // Size of a tile in meters
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"costmap resolution: %g", costmap_grid_->getResolution());
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"tile size: %g", tile_size_);
@@ -280,6 +280,9 @@ namespace full_coverage_path_planner
     // Save map origin and scaling
     cpp_costmap->mapToWorld(0, 0, grid_origin_.x, grid_origin_.y);
     tile_size_ = nodeSize * cpp_costmap->getResolution(); // Size of a tile in meters
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"costmap resolution: %g", cpp_costmap->getResolution());
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"tile size: %g", tile_size_);
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"grid origin: (%g, %g)", grid_origin_.x, grid_origin_.y);
     // Scale starting point
     scaledStart.x = static_cast<unsigned int>(clamp((realStart.pose.position.x - grid_origin_.x) / tile_size_, 0.0,
                                                     floor(cpp_costmap->getSizeInCellsX() / tile_size_)));
