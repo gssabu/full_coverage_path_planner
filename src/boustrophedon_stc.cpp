@@ -127,7 +127,7 @@ namespace full_coverage_path_planner
         dy = -1;
         break;
       default:
-        ROS_ERROR("Full Coverage Path Planner: NO INITIAL ROBOT DIRECTION CALCULATED. This is a logic error that must be fixed by editing boustrophedon_stc.cpp. Will travel east for now.");
+        RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"), "Full Coverage Path Planner: NO INITIAL ROBOT DIRECTION CALCULATED. This is a logic error that must be fixed by editing boustrophedon_stc.cpp. Will travel east for now.");
         robot_dir = east;
         dx = +1;
         dy = 0;
@@ -180,7 +180,7 @@ namespace full_coverage_path_planner
             } else {
               pattern_dir_ = dirWithMostSpace(x2, y2, nCols, nRows, grid, visited, south);
             }
-            RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"rotation dir with most space successful";
+            RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"rotation dir with most space successful");
           }
           // Get into this following state-> (blocked or visited. valid move) preferred turn direction ***-> variable pattern direction***=> top if right here***-> pattern direction not East r West***-> ( if no preferred turn direction---> travel to most open)
           if (pattern_dir_ = east) {
@@ -318,7 +318,7 @@ namespace full_coverage_path_planner
       bool resign = a_star_to_open_space(grid, pathNodes.back(), 1, visited, goals, pathNodes);
       if (resign)
       {
-        RCLCPP_WARN(rclcpp::get_logger("FullCoveragePathPlanner"),"A_star_to_open_space is resigning! This may be due to the open cells outside of the obstacle boundary. Goals Left: %u", goals.size();
+        RCLCPP_WARN(rclcpp::get_logger("FullCoveragePathPlanner"),"A_star_to_open_space is resigning! This may be due to the open cells outside of the obstacle boundary. Goals Left: %u", goals.size());
         break;
       }
       // Update visited grid
@@ -364,15 +364,15 @@ namespace full_coverage_path_planner
     Point_t startPoint;
 
     std::vector<std::vector<bool>> grid;
-    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"grid recieved!!";
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"grid recieved!!");
 
-    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"Parsing grid to internal representation...";
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"Parsing grid to internal representation...");
     if (!parseGrid(costmap_, grid, robot_radius_ * 2, tool_radius_ * 2, start, startPoint))
     {
       RCLCPP_ERROR(rclcpp::get_logger("FullCoveragePathPlanner"), "Could not parse retrieved grid");
       return false;
     }
-    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"grid parsed!!";
+    RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"),"grid parsed!!");
                 
 #ifdef DEBUG_PLOT
     RCLCPP_INFO(rclcpp::get_logger("FullCoveragePathPlanner"), "Start grid is:");
