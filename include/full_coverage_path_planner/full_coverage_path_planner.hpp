@@ -102,7 +102,7 @@ namespace full_coverage_path_planner
    * @param scaledStart Start position of the robot on the grid
    * @return success
    */
-  bool parseGrid(nav_msgs::OccupancyGrid const& cpp_grid_,
+  bool parseGrid(nav_msgs::msg::OccupancyGrid const& cpp_grid_,
                  std::vector<std::vector<bool> >& grid,
                  float robotRadius,
                  float toolRadius,
