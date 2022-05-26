@@ -90,7 +90,7 @@ namespace full_coverage_path_planner
                     std::vector<std::vector<bool> >& grid,
                     float robotRadius,
                     float toolRadius,
-                    geometry_msgs::PoseStamped const& realStart,
+                    geometry_msgs::msg::PoseStamped const& realStart,
                     Point_t& scaledStart);
 
   /**
@@ -106,7 +106,7 @@ namespace full_coverage_path_planner
                  std::vector<std::vector<bool> >& grid,
                  float robotRadius,
                  float toolRadius,
-                 geometry_msgs::PoseStamped const& realStart,
+                 geometry_msgs::msg::PoseStamped const& realStart,
                  Point_t& scaledStart);
 
     /**
